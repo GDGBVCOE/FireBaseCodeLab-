@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
-import com.example.vaibhavchellani.firebaseioextended.Adapters.listViewAdapter;
+import com.example.vaibhavchellani.firebaseioextended.Adapters.listviewAdapter;
 import com.example.vaibhavchellani.firebaseioextended.Models.Message;
 import com.example.vaibhavchellani.firebaseioextended.R;
 
@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText messageEditText;
     private Button sendButton;
     private ListView messageListView;
-    private listViewAdapter mlistviewAdapter;
+    private listviewAdapter mlistviewAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,14 +42,14 @@ public class MainActivity extends AppCompatActivity {
         messages.add(newMessage);messages.add(newMessage);messages.add(newMessage);*/
 
 
-        mlistviewAdapter=new listViewAdapter(this,R.layout.row_layout,messages);
+        mlistviewAdapter=new listviewAdapter(this,R.layout.row_layout,messages);
         messageListView.setAdapter(mlistviewAdapter);
 
         // Send button listener
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                //todo in further steps
             }
         });
 

@@ -5,6 +5,7 @@ package com.example.vaibhavchellani.firebaseioextended.Models;
  */
 
 public class Message {
+
     private String userName,userMessage;
 
     public Message(){}
