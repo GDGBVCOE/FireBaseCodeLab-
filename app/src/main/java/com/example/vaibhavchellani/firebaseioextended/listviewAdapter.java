@@ -1,4 +1,4 @@
-package com.example.vaibhavchellani.firebaseioextended.Adapters;
+package com.example.vaibhavchellani.firebaseioextended;
 
 import android.app.Activity;
 import android.content.Context;
@@ -8,9 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
-
-import com.example.vaibhavchellani.firebaseioextended.Models.Message;
-import com.example.vaibhavchellani.firebaseioextended.R;
 
 import java.util.List;
 
