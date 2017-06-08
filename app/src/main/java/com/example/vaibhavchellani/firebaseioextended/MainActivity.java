@@ -126,6 +126,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                 messageEditText.setText("");
             }
         });
+
         mlistviewAdapter=new listviewAdapter(this,R.layout.row_layout,messages);
         messageListView.setAdapter(mlistviewAdapter);
 
