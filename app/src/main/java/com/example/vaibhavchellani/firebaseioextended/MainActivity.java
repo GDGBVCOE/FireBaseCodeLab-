@@ -15,6 +15,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.auth.FirebaseAuth;
@@ -89,7 +91,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         mDatabaseReference= FirebaseDatabase.getInstance().getReference();
 
 
-        // if edit text is empty this disables the send button .
+        // if edit text is empty this disables the send button.
         messageEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
