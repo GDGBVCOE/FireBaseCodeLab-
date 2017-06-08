@@ -22,6 +22,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -36,6 +37,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+
 
 public class MainActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
 
@@ -53,12 +55,11 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     public static final String ANONYMOUS = "anonymous";
 
     private GoogleApiClient mGoogleApiClient;
-
-
+    // firebase analytics object
+    private FirebaseAnalytics mFirebaseAnalytics;
     // Firebase instance variables
     private FirebaseAuth mFirebaseAuth;
     private FirebaseUser mFirebaseUser;
-    private DatabaseReference mDatabaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +71,10 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         // Initialize Firebase Auth
         mFirebaseAuth = FirebaseAuth.getInstance();
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
+
+        // Obtain the FirebaseAnalytics instance.
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+
         if (mFirebaseUser == null) {
             // Not signed in, launch the Sign In activity
             startActivity(new Intent(this, SignInActivity.class));
@@ -117,10 +122,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             }
         });
 
-
-
         updateMaxTextLength();
-
 
         //getting reference to database
         mDatabaseReference= FirebaseDatabase.getInstance().getReference();
@@ -161,6 +163,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             }
         });
 
+
+
         mDatabaseReference.child("messages").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
@@ -189,6 +193,16 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
             }
         });
+
+        //setting custom user property
+        String hasDP="";
+        if(mFirebaseUser.getPhotoUrl()==null){
+             hasDP="true";
+        }
+        else {
+             hasDP = "true";
+        }
+        mFirebaseAnalytics.setUserProperty("hasDP",hasDP);
     }
 
 
@@ -234,4 +248,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         /*messageEditText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(10)})*/;
         messageEditText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(maxlength)});
     }
+
+
 }
